@@ -14,7 +14,7 @@
         android:background="@drawable/input"/>
 
     <EditText
-        android:id="@+id/edit_photo"
+        android:id="@+id/edit_phone"
         android:paddingLeft="10dp"
         android:hint="手机号码"
         android:layout_margin="10dp"
