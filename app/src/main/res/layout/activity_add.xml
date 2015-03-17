@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edit_title"
+        android:paddingLeft="10dp"
+        android:hint="标题"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_edit_height"
+        android:background="@drawable/input"/>
+
+    <EditText
+        android:id="@+id/edit_photo"
+        android:paddingLeft="10dp"
+        android:hint="手机号码"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_edit_height"
+        android:background="@drawable/input"
+        android:inputType="phone"
+        android:maxLength="11"/>
+
+    <EditText
+        android:id="@+id/edit_describe"
+        android:paddingLeft="10dp"
+        android:hint="描述"
+        android:layout_margin="10dp"
+        android:background="@drawable/input"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_edit_height"
+        android:maxLines="4"/>
+
+</LinearLayout>
