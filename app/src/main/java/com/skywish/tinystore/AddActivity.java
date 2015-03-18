@@ -1,5 +1,6 @@
 package com.skywish.tinystore;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,20 +10,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.skywish.tinystore.bean.Lost;
+import com.skywish.tinystore.config.Constants;
 
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by skywish on 2015/3/17.
  */
-public class AddActivity extends BaseActivity implements View.OnClickListener{
+public class AddActivity extends Activity implements View.OnClickListener{
     private EditText edit_title, edit_phone, edit_describe;
     private Button btn_back, btn_true;
     private TextView tv_add;
-
-    String old_title = "";
-    String old_describe = "";
-    String old_phone = "";
 
     String title = "";
     String describe = "";
@@ -32,7 +31,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-
+        Bmob.initialize(this, Constants.Bmob_APPID);
         tv_add = (TextView) findViewById(R.id.tv_add);
         btn_back = (Button) findViewById(R.id.btn_back);
         btn_true = (Button) findViewById(R.id.btn_true);
@@ -86,12 +85,12 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
         lost.save(this, new SaveListener() {
             @Override
             public void onSuccess() {
-                Toast.makeText(AddActivity.this, "失误信息添加成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "失误信息添加成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(int i, String s) {
-                Toast.makeText(AddActivity.this, "失误信息添加失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "失误信息添加失败", Toast.LENGTH_SHORT).show();
             }
         });
     }
