@@ -1,2 +1,2 @@
 # TinyStore
-First try to use bmob to build an app
+Try to use bmob to build an app
