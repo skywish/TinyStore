@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.skywish.tinystore.bean.Found;
 import com.skywish.tinystore.bean.Lost;
 
 import cn.bmob.v3.listener.SaveListener;
@@ -23,6 +24,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
     String title = "";
     String describe = "";
     String phone="";
+    String from="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,20 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
 
         btn_back.setOnClickListener(this);
         btn_true.setOnClickListener(this);
+
+        from = getIntent().getStringExtra("from");
+        if (from.equals("Lost")) {
+            tv_add.setText("添加失物信息");
+        } else {
+            tv_add.setText("添加招领信息");
+        }
     }
+
+//    public static void actionStart(Context context, String data1) {
+//        Intent intent = new Intent(context, AddActivity.class);
+//        intent.putExtra("from", data1);
+//        context.startActivity(intent);
+//    }
 
     @Override
     public void onClick(View v) {
@@ -70,7 +85,11 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
             Toast.makeText(this, "请填写描述", Toast.LENGTH_SHORT).show();
             return;
         }
-        addLost();
+        if(from.equals("Lost")){
+            addLost();
+        }else{
+            addFound();
+        }
     }
 
     private void addLost() {
@@ -82,12 +101,31 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
         lost.save(this, new SaveListener() {
             @Override
             public void onSuccess() {
-                Toast.makeText(getApplicationContext(), "成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Lost添加成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(int i, String s) {
-                Toast.makeText(getApplicationContext(), "失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Lost添加失败" + s, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addFound() {
+        Found found = new Found();
+        found.setDescribe(describe);
+        found.setPhone(phone);
+        found.setTitle(title);
+
+        found.save(this, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(getApplicationContext(), "Found添加成功", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Toast.makeText(getApplicationContext(), "Found添加失败" + s, Toast.LENGTH_SHORT).show();
             }
         });
     }

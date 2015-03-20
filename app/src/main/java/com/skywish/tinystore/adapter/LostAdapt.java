@@ -15,11 +15,11 @@ import java.util.List;
 /**
  * Created by skywish on 2015/3/18.
  */
-public class MyAdapter extends ArrayAdapter<Lost> {
+public class LostAdapt extends ArrayAdapter<Lost> {
 
     private int resourceId;
 
-    public MyAdapter(Context context, int textViewResourceId, List<Lost> objects) {
+    public LostAdapt(Context context, int textViewResourceId, List<Lost> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
